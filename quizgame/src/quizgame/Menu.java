@@ -51,7 +51,7 @@ public class Menu {
 		categories.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 Catges c= new Catges();
-				 c.Categseng.setVisible(true);
+				 c.Categs.setVisible(true);
 				 frameMenu.dispose();
 
 			}
