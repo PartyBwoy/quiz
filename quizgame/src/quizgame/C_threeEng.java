@@ -5,13 +5,13 @@ import java.awt.*;
 import javax.swing.*;
 
 public class C_threeEng implements ActionListener{
-	
+		
 	String[] questions = 	{
-								"?",
-								"+?",
-								"?",
-								"?",
-								"?"
+								"What was the first digital programming language in history?",
+								"In what year was the C ++ language created?",
+								"Which of the following four languages is the oldest?",
+								"Which of the following programming languages is not available?",
+								"What is the most used programming language by software engineers and developers?"
 								
 							};
 	String[][] options = 	{
