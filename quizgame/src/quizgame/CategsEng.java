@@ -22,7 +22,7 @@ import java.awt.Image;
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						Catges window = new Catges();
+						CategsEng window = new CategsEng();
 						window.Categseng.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -68,8 +68,8 @@ import java.awt.Image;
 			C2.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
 			C2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					C_two quiz=new C_two();
-					quiz.frametwo.setVisible(true);
+					C_twoEng quiz=new C_twoEng();
+					quiz.frametwoeng.setVisible(true);
 					Categseng.dispose();
 
 				}
@@ -83,8 +83,8 @@ import java.awt.Image;
 			C3.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
 			C3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					C_three quiz=new C_three();
-					quiz.framethree.setVisible(true);
+					C_threeEng quiz=new C_threeEng();
+					quiz.framethreeeng.setVisible(true);
 					Categseng.dispose();
 				}
 			});
@@ -106,5 +106,8 @@ import java.awt.Image;
 			Categseng.getContentPane().add(back);
 		}
 	}
+
+
+
 
 
