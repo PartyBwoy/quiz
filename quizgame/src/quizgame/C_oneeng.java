@@ -5,15 +5,14 @@ import java.awt.*;
 import javax.swing.*;
 
 public class C_oneeng implements ActionListener{
-	
 	String[] questions = 	{
-								"ggggggggg",
-								"",
-								"",
-								"",
-								"RAM is",
-								" DOS' is",
-								""
+								"The capacity of a hard drive is measured whith?",
+								"How many information can a CD (Compact Disk) store usually ?",
+								"Which operating system is used by the computer?",
+								"Which one is not a computer manufacturer?",
+								"RAM is acronym for",
+								" DOS' is acronym for",
+								"The physical components that make up a computer are known as:"
 							};
 	String[][] options = 	{
 								{"MHz","Mbps","52X","Giga-octets"},
