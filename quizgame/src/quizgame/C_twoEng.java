@@ -6,15 +6,14 @@
 	import javax.swing.*;
 
 	public class C_twoEng implements ActionListener{
-		
-		String[] questions = 	{
-									"" ,
-									"",
-									"",
-									"",
-									"",
-									"",
-									""
+	      String[] questions = 	{
+									"Which one of the choices below is not an operating system:?" ,
+									"windows 7 is a?",
+									"Which of these operating systems is OpenSource?",
+									"Which of the following is malware?",
+									"Which of these software is a productivity suite?",
+									"Which of these software is a Browser?",
+									"Which of these software is a UTILITY?"
 									
 								};
 		String[][] options = 	{
