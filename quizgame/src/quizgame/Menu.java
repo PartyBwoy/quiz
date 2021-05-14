@@ -42,6 +42,8 @@ public class Menu {
 	 */
 	private void initialize() {
 		frameMenu = new JFrame();
+				frameMenu.setResizable(false);
+
 		frameMenu.getContentPane().setBackground(Color.ORANGE);
 		frameMenu.getContentPane().setLayout(null);
 		Image imgBC= new ImageIcon(this.getClass().getResource("/catgs.png")).getImage();
