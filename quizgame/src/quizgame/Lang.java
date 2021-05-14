@@ -52,6 +52,12 @@ public class Lang {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 Catges c= new Catges();
+				 
+				 Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					
+					
+					playWave4.start();
+				
 				 c.Categs.setVisible(true);
 				 frameLang.dispose();
 			}
@@ -65,6 +71,12 @@ public class Lang {
 		btnEng.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 CategsEng c= new CategsEng();
+				 
+				 Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					
+					
+					playWave4.start();
+				
 				 c.Categseng.setVisible(true);
 				 frameLang.dispose();
 			}
