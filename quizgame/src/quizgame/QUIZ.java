@@ -1,28 +1,18 @@
 package quizgame;
 
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import java.awt.Toolkit;
-import javax.swing.JMenuBar;
-import java.awt.Component;
-import javax.swing.UIManager;
-import javax.swing.Icon;
+
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Dimension;
 
 public class QUIZ {
 
@@ -33,11 +23,14 @@ public class QUIZ {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		 
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					QUIZ window = new QUIZ();
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,6 +43,7 @@ public class QUIZ {
 	 */
 	public QUIZ() {
 		initialize();
+
 	}
 
 	/**
@@ -64,6 +58,12 @@ public class QUIZ {
 	
 		Image imgBP= new ImageIcon(this.getClass().getResource("/PLAY (2).png")).getImage();
 		JButton play = new JButton(new ImageIcon(imgBP));
+		
+		Thread playWave4=new AePlayWave("sounds/button-10.wav");
+		
+		
+		//playWave4.start();
+	
 		play.setBounds(152, 377, 170, 75);
 	//	play.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
 		//play.setForeground(Color.ORANGE);
@@ -71,7 +71,15 @@ public class QUIZ {
 		play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			 Catges c= new Catges();
+			 
+			// Thread playWave4=new AePlayWave("sounds/button-10.wav");
+				
+				
+				playWave4.start();
+			
+				
 			 c.Categs.setVisible(true);
+			 
 			 frame.dispose();
 			}
 		});
@@ -88,11 +96,22 @@ public class QUIZ {
 	//	menu.setForeground(Color.RED);
 		menu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				Menu c= new Menu();
+				
+				//Thread playWave4=new AePlayWave("sounds/button-10.wav");
+				
+				
+				playWave4.start();
+			
+				
 				 c.frameMenu.setVisible(true);
 				 frame.dispose();
+				 
 			}
 		});
+		
+		
 		frame.getContentPane().add(menu);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -102,7 +121,10 @@ public class QUIZ {
 		frame.getContentPane().add(lblNewLabel);
 		
 		
+		
+		
 		frame.setBounds(0, 0, 500, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	 
 }
