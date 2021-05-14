@@ -86,6 +86,8 @@ package quizgame;
 		public C_twoEng() {
 			frametwoeng.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frametwoeng.setSize(500,700);
+						frametwoeng.setResizable(false);
+
 			frametwoeng.getContentPane().setBackground(Color.ORANGE);
 			frametwoeng.setLayout(null);
 			frametwoeng.setResizable(false);
