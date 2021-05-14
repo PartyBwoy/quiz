@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 public class C_two implements ActionListener{
-	
+
 	String[] questions = 	{
 								"Parmi les choix ci-dessous, lequel n'est pas un système d'exploitation: ?" ,
 								"windows 7 est un?",
@@ -14,18 +14,17 @@ public class C_two implements ActionListener{
 								"Lequel de ces logiciels est une suite de productivité?",
 								"Lequel de ces logiciels est un Navigateur?",
 								"Lequel de ces logiciels est un UTILITAIRE?"
-								
-							};
+	};
 	String[][] options = 	{
 								{"Google chrome","Mac Os","Linux","Windows Vista"},
-								{"logiciel de traitement de texte","un système d'exploitation"," une marque d'ordinateur","\r\n" + 
+								{"logiciel de traitement de texte","un syst�me d'exploitation"," une marque d'ordinateur","\r\n" + 
 										"une application"},
 								
 								{"Windows 10","OS X Mojave","Linux Debian","iOS"},
-								{"Microsoft Windows 10","Scarab.Ransomware","Microsoft Visual Studio","Défragmenteur de disque"},
+								{"Microsoft Windows 10","Scarab.Ransomware","Microsoft Visual Studio","D�fragmenteur de disque"},
 								{"Microsoft Office","Photoshop","Microsoft Visual Studio","CCleaner"},
-								{"Microsoft Visual Studio","Photoshop","Défragmenteur de disque","Mozilla Firefox"},
-								{"Google chrome","Photoshop","Microsoft Visual Studio","Défragmenteur de disque"},
+								{"Microsoft Visual Studio","Photoshop","D�fragmenteur de disque","Mozilla Firefox"},
+								{"Google chrome","Photoshop","Microsoft Visual Studio","D�fragmenteur de disque"},
 	};
 	char[] answers = 		{
 								'A',
@@ -66,6 +65,18 @@ public class C_two implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			seconds--;
 			seconds_left.setText(String.valueOf(seconds));
+			
+			Thread playWave3=new AePlayWave("Level3_Up.wav");
+			
+			
+			if(seconds<=4 ) {
+				if(seconds>1 ) {
+					
+				playWave3.start();
+				}
+				
+			}
+
 			if(seconds<=0) {
 				displayAnswer();
 			}
@@ -155,7 +166,7 @@ public class C_two implements ActionListener{
 		time_label.setForeground(new Color(255,0,0));
 		time_label.setFont(new Font("MV Boli",Font.PLAIN,16));
 		time_label.setHorizontalAlignment(JTextField.CENTER);
-		time_label.setText("timer °.°");
+		time_label.setText("timer �.�");
 		
 		number_right.setBounds(150,225,200,100);
 		number_right.setBackground(new Color(25,25,25));
@@ -193,15 +204,20 @@ public class C_two implements ActionListener{
 		
 		if(index>=total_questions) {
 			results();
-			JButton btnNewButton = new JButton("Restart!");
+	Image imgre= new ImageIcon(this.getClass().getResource("/restart.png")).getImage();
+			
+			JButton btnNewButton = new JButton();
+			btnNewButton.setIcon(new ImageIcon(imgre));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					QUIZ Q= new QUIZ();
 					 Q.frame.setVisible(true);
 					frametwo.dispose();
+					Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					playWave4.start();
 				}
 			});
-			btnNewButton.setBounds(150,600, 200, 50);
+			btnNewButton.setBounds(150,600, 170, 75);
 			frametwo.add(btnNewButton);
 		}
 		else {
@@ -215,103 +231,137 @@ public class C_two implements ActionListener{
 		}
 	}
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-			buttonA.setEnabled(false);
-			buttonB.setEnabled(false);
-			buttonC.setEnabled(false);
-			buttonD.setEnabled(false);
-			
-			if(e.getSource()==buttonA) {
-				answer= 'A';
-				if(answer == answers[index]) {
-					correct_guesses++;
-				}
-			}
-			if(e.getSource()==buttonB) {
-				answer= 'B';
-				if(answer == answers[index]) {
-					correct_guesses++;
-				}
-			}
-			if(e.getSource()==buttonC) {
-				answer= 'C';
-				if(answer == answers[index]) {
-					correct_guesses++;
-				}
-			}
-			if(e.getSource()==buttonD) {
-				answer= 'D';
-				if(answer == answers[index]) {
-					correct_guesses++;
-				}
-			}
-			displayAnswer();
-	}
-	public void displayAnswer() {
-		
-		timer.stop();
+public void actionPerformed(ActionEvent e) {
 		
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		buttonC.setEnabled(false);
 		buttonD.setEnabled(false);
 		
-		if(answers[index] != 'A')
-			answer_labelA.setForeground(new Color(255,0,0));
-		if(answers[index] != 'B')
-			answer_labelB.setForeground(new Color(255,0,0));
-		if(answers[index] != 'C')
-			answer_labelC.setForeground(new Color(255,0,0));
-		if(answers[index] != 'D')
-			answer_labelD.setForeground(new Color(255,0,0));
+Thread winer=new AePlayWave("sounds/Ta Da-SoundBible.com-1884170640.wav");
+Thread loser=new AePlayWave("sounds/dun_dun_dun-Delsym-719755295.wav");
 		
-		Timer pause = new Timer(2000, new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				answer_labelA.setForeground(new Color(25,255,0));
-				answer_labelB.setForeground(new Color(25,255,0));
-				answer_labelC.setForeground(new Color(25,255,0));
-				answer_labelD.setForeground(new Color(25,255,0));
-				
-				answer = ' ';
-				seconds=10;
-				seconds_left.setText(String.valueOf(seconds));
-				buttonA.setEnabled(true);
-				buttonB.setEnabled(true);
-				buttonC.setEnabled(true);
-				buttonD.setEnabled(true);
-				index++;
-				nextQuestion();
+		if(e.getSource()==buttonA) {
+			answer= 'A';
+			if(answer == answers[index]) {
+				correct_guesses++;
+				winer.start();
+			}else {
+				loser.start();
 			}
-		});
-		pause.setRepeats(false);
-		pause.start();
-	}
-	public void results(){
-		buttonA.setBounds(0, 0, 0, 0);
-		buttonB.setBounds(0, 0, 0, 0);
-		buttonC.setBounds(0, 0, 0, 0);
-		buttonD.setBounds(0, 0, 0, 0);
-		
-		result = (int)((correct_guesses/(double)total_questions)*100);
-		
-		textfield.setText("RESULTS!");
-		textarea.setBounds(0, 0, 0, 0);
-		time_label.setBounds(0, 0, 0, 0);
-		seconds_left.setBounds(0,0,0,0);
+		}
+		if(e.getSource()==buttonB) {
+			answer= 'B';
+			if(answer == answers[index]) {
+				correct_guesses++;
+				winer.start();
+			}else {
+				loser.start();
 
-		answer_labelA.setText("");
-		answer_labelB.setText("");
-		answer_labelC.setText("");
-		answer_labelD.setText("");
-		number_right.setText("("+correct_guesses+"/"+total_questions+")");
-		percentage.setText(result+"%");
+			}
+		}
+		if(e.getSource()==buttonC) {
+			answer= 'C';
+			if(answer == answers[index]) {
+				correct_guesses++;
+				winer.start();
+			}else {
+				loser.start();
+
+			}
+		}
+		if(e.getSource()==buttonD) {
+			answer= 'D';
+			if(answer == answers[index]) {
+				correct_guesses++;
+				winer.start();
+			}else {
+				loser.start();
+
+			}
+		}
+		displayAnswer();
+}
+public void displayAnswer() {
+	
+	timer.stop();
+	
+
+	buttonA.setEnabled(false);
+	buttonB.setEnabled(false);
+	buttonC.setEnabled(false);
+	buttonD.setEnabled(false);
+
+	if(answers[index] != 'A')
+		answer_labelA.setForeground(new Color(255,0,0));
+	if(answers[index] != 'B')
+		answer_labelB.setForeground(new Color(255,0,0));
+	if(answers[index] != 'C')
+		answer_labelC.setForeground(new Color(255,0,0));
+	if(answers[index] != 'D')
+		answer_labelD.setForeground(new Color(255,0,0));
+	
+	Timer pause = new Timer(2000, new ActionListener() {
 		
-		frametwo.add(number_right);
-		frametwo.add(percentage);
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			answer_labelA.setForeground(new Color(25,255,0));
+			answer_labelB.setForeground(new Color(25,255,0));
+			answer_labelC.setForeground(new Color(25,255,0));
+			answer_labelD.setForeground(new Color(25,255,0));
+			
+			answer = ' ';
+			seconds=10;
+			seconds_left.setText(String.valueOf(seconds));
+			buttonA.setEnabled(true);
+			buttonB.setEnabled(true);
+			buttonC.setEnabled(true);
+			buttonD.setEnabled(true);
+			index++;
+			nextQuestion();
+		}
+	});
+	pause.setRepeats(false);
+	pause.start();
+	
+}
+public void results(){
+	
+	buttonA.setBounds(0, 0, 0, 0);
+	buttonB.setBounds(0, 0, 0, 0);
+	buttonC.setBounds(0, 0, 0, 0);
+	buttonD.setBounds(0, 0, 0, 0);
+	
+	result = (int)((correct_guesses/(double)total_questions)*100);
+	Thread CONGRT=new AePlayWave("sounds/Fireworks And Crowd-SoundBible.com-81665534.wav");
+	Thread playWave2=new AePlayWave("sounds/Sad_Trombone-Joe_Lamb-665429450.wav");
+	if (correct_guesses>4) {
+		CONGRT.start();
+		}
+		else {
+		playWave2.start();
+		}
+	textfield.setText("RESULTS!");
+	textarea.setBounds(0, 0, 0, 0);
+	time_label.setBounds(0, 0, 0, 0);
+	seconds_left.setBounds(0,0,0,0);
+
+	answer_labelA.setText("");
+	answer_labelB.setText("");
+	answer_labelC.setText("");
+	answer_labelD.setText("");
+	
+	number_right.setText("("+correct_guesses+"/"+total_questions+")");
+	percentage.setText(result+"%");
 		
-	}
+	
+	frametwo.add(number_right);
+	frametwo.add(percentage);
+	
+
+
+
+	
+}
 }
