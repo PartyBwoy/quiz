@@ -46,6 +46,8 @@ import java.awt.Image;
 		 */
 		private void initialize() {
 			Categseng = new JFrame();
+						Categseng.setResizable(false);
+
 			Categseng.getContentPane().setBackground(Color.ORANGE);
 			Categseng.setBackground(Color.ORANGE);
 			Categseng.setBounds(0, 0, 500, 700);
