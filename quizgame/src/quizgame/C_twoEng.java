@@ -1,5 +1,4 @@
-
-	package quizgame;
+package quizgame;
 
 	import java.awt.event.*;
 	import java.awt.*;
@@ -66,6 +65,18 @@
 			public void actionPerformed(ActionEvent e) {
 				seconds--;
 				seconds_left.setText(String.valueOf(seconds));
+				
+				Thread playWave3=new AePlayWave("Level3_Up.wav");
+				
+				
+				if(seconds<=4 ) {
+					if(seconds>1 ) {
+						
+					playWave3.start();
+					}
+					
+				}
+
 				if(seconds<=0) {
 					displayAnswer();
 				}
@@ -155,7 +166,7 @@
 			time_label.setForeground(new Color(255,0,0));
 			time_label.setFont(new Font("MV Boli",Font.PLAIN,16));
 			time_label.setHorizontalAlignment(JTextField.CENTER);
-			time_label.setText("timer °.°");
+			time_label.setText("timer �.�");
 			
 			number_right.setBounds(150,225,200,100);
 			number_right.setBackground(new Color(25,25,25));
@@ -193,15 +204,20 @@
 			
 			if(index>=total_questions) {
 				results();
-				JButton btnNewButton = new JButton("Restart!");
+				Image imgre= new ImageIcon(this.getClass().getResource("/restart.png")).getImage();
+				
+				JButton btnNewButton = new JButton();
+				btnNewButton.setIcon(new ImageIcon(imgre));
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						QUIZ Q= new QUIZ();
 						 Q.frame.setVisible(true);
 						frametwoeng.dispose();
+						Thread playWave4=new AePlayWave("sounds/button-10.wav");
+						playWave4.start();
 					}
 				});
-				btnNewButton.setBounds(150,600, 200, 50);
+				btnNewButton.setBounds(150,600,  170, 75);
 				frametwoeng.add(btnNewButton);
 			}
 			else {
@@ -217,103 +233,135 @@
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			
-				buttonA.setEnabled(false);
-				buttonB.setEnabled(false);
-				buttonC.setEnabled(false);
-				buttonD.setEnabled(false);
-				
-				if(e.getSource()==buttonA) {
-					answer= 'A';
-					if(answer == answers[index]) {
-						correct_guesses++;
-					}
-				}
-				if(e.getSource()==buttonB) {
-					answer= 'B';
-					if(answer == answers[index]) {
-						correct_guesses++;
-					}
-				}
-				if(e.getSource()==buttonC) {
-					answer= 'C';
-					if(answer == answers[index]) {
-						correct_guesses++;
-					}
-				}
-				if(e.getSource()==buttonD) {
-					answer= 'D';
-					if(answer == answers[index]) {
-						correct_guesses++;
-					}
-				}
-				displayAnswer();
-		}
-		public void displayAnswer() {
-			
-			timer.stop();
-			
 			buttonA.setEnabled(false);
 			buttonB.setEnabled(false);
 			buttonC.setEnabled(false);
 			buttonD.setEnabled(false);
 			
-			if(answers[index] != 'A')
-				answer_labelA.setForeground(new Color(255,0,0));
-			if(answers[index] != 'B')
-				answer_labelB.setForeground(new Color(255,0,0));
-			if(answers[index] != 'C')
-				answer_labelC.setForeground(new Color(255,0,0));
-			if(answers[index] != 'D')
-				answer_labelD.setForeground(new Color(255,0,0));
+	Thread winer=new AePlayWave("sounds/Ta Da-SoundBible.com-1884170640.wav");
+	Thread loser=new AePlayWave("sounds/dun_dun_dun-Delsym-719755295.wav");
 			
-			Timer pause = new Timer(2000, new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					answer_labelA.setForeground(new Color(25,255,0));
-					answer_labelB.setForeground(new Color(25,255,0));
-					answer_labelC.setForeground(new Color(25,255,0));
-					answer_labelD.setForeground(new Color(25,255,0));
-					
-					answer = ' ';
-					seconds=10;
-					seconds_left.setText(String.valueOf(seconds));
-					buttonA.setEnabled(true);
-					buttonB.setEnabled(true);
-					buttonC.setEnabled(true);
-					buttonD.setEnabled(true);
-					index++;
-					nextQuestion();
+			if(e.getSource()==buttonA) {
+				answer= 'A';
+				if(answer == answers[index]) {
+					correct_guesses++;
+					winer.start();
+				}else {
+					loser.start();
 				}
-			});
-			pause.setRepeats(false);
-			pause.start();
-		}
-		public void results(){
-			buttonA.setBounds(0, 0, 0, 0);
-			buttonB.setBounds(0, 0, 0, 0);
-			buttonC.setBounds(0, 0, 0, 0);
-			buttonD.setBounds(0, 0, 0, 0);
-			
-			result = (int)((correct_guesses/(double)total_questions)*100);
-			
-			textfield.setText("RESULTS!");
-			textarea.setBounds(0, 0, 0, 0);
-			time_label.setBounds(0, 0, 0, 0);
-			seconds_left.setBounds(0,0,0,0);
+			}
+			if(e.getSource()==buttonB) {
+				answer= 'B';
+				if(answer == answers[index]) {
+					correct_guesses++;
+					winer.start();
+				}else {
+					loser.start();
 
-			answer_labelA.setText("");
-			answer_labelB.setText("");
-			answer_labelC.setText("");
-			answer_labelD.setText("");
-			number_right.setText("("+correct_guesses+"/"+total_questions+")");
-			percentage.setText(result+"%");
+				}
+			}
+			if(e.getSource()==buttonC) {
+				answer= 'C';
+				if(answer == answers[index]) {
+					correct_guesses++;
+					winer.start();
+				}else {
+					loser.start();
+
+				}
+			}
+			if(e.getSource()==buttonD) {
+				answer= 'D';
+				if(answer == answers[index]) {
+					correct_guesses++;
+					winer.start();
+				}else {
+					loser.start();
+
+				}
+			}
+			displayAnswer();
+	}
+	public void displayAnswer() {
+		
+		timer.stop();
+		
+
+		buttonA.setEnabled(false);
+		buttonB.setEnabled(false);
+		buttonC.setEnabled(false);
+		buttonD.setEnabled(false);
+
+		if(answers[index] != 'A')
+			answer_labelA.setForeground(new Color(255,0,0));
+		if(answers[index] != 'B')
+			answer_labelB.setForeground(new Color(255,0,0));
+		if(answers[index] != 'C')
+			answer_labelC.setForeground(new Color(255,0,0));
+		if(answers[index] != 'D')
+			answer_labelD.setForeground(new Color(255,0,0));
+		
+		Timer pause = new Timer(2000, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				answer_labelA.setForeground(new Color(25,255,0));
+				answer_labelB.setForeground(new Color(25,255,0));
+				answer_labelC.setForeground(new Color(25,255,0));
+				answer_labelD.setForeground(new Color(25,255,0));
+				
+				answer = ' ';
+				seconds=10;
+				seconds_left.setText(String.valueOf(seconds));
+				buttonA.setEnabled(true);
+				buttonB.setEnabled(true);
+				buttonC.setEnabled(true);
+				buttonD.setEnabled(true);
+				index++;
+				nextQuestion();
+			}
+		});
+		pause.setRepeats(false);
+		pause.start();
+		
+	}
+	public void results(){
+		
+		buttonA.setBounds(0, 0, 0, 0);
+		buttonB.setBounds(0, 0, 0, 0);
+		buttonC.setBounds(0, 0, 0, 0);
+		buttonD.setBounds(0, 0, 0, 0);
+		
+		result = (int)((correct_guesses/(double)total_questions)*100);
+		Thread CONGRT=new AePlayWave("sounds/Fireworks And Crowd-SoundBible.com-81665534.wav");
+		Thread playWave2=new AePlayWave("sounds/Sad_Trombone-Joe_Lamb-665429450.wav");
+		if (correct_guesses>4) {
+			CONGRT.start();
+			}
+			else {
+			playWave2.start();
+			}
+		textfield.setText("RESULTS!");
+		textarea.setBounds(0, 0, 0, 0);
+		time_label.setBounds(0, 0, 0, 0);
+		seconds_left.setBounds(0,0,0,0);
+
+		answer_labelA.setText("");
+		answer_labelB.setText("");
+		answer_labelC.setText("");
+		answer_labelD.setText("");
+		
+		number_right.setText("("+correct_guesses+"/"+total_questions+")");
+		percentage.setText(result+"%");
+			
 			
 			frametwoeng.add(number_right);
 			frametwoeng.add(percentage);
 			
+		
+			
+			
 		}
 	}
-
 
