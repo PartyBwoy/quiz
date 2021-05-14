@@ -5,7 +5,6 @@ import java.awt.Image;
 
 import javax.swing.JFrame;
 import java.awt.Color;
-import javax.swing.JMenuBar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -47,10 +46,18 @@ public class Menu {
 		frameMenu.getContentPane().setLayout(null);
 		Image imgBC= new ImageIcon(this.getClass().getResource("/catgs.png")).getImage();
 		JButton categories = new JButton(new ImageIcon(imgBC));
+	
 		categories.setForeground(Color.RED);
 		categories.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 Catges c= new Catges();
+				 
+				 Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					
+					
+					playWave4.start();
+				
+					
 				 c.Categs.setVisible(true);
 				 frameMenu.dispose();
 
@@ -66,6 +73,13 @@ public class Menu {
 		languages.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 Lang c= new Lang();
+				 
+				 Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					
+					
+					playWave4.start();
+				
+					
 				 c.frameLang.setVisible(true);
 				 frameMenu.dispose();
 			}
@@ -76,17 +90,29 @@ public class Menu {
 		
 		Image imgBH= new ImageIcon(this.getClass().getResource("/help.png")).getImage();
 		JButton help = new JButton(new ImageIcon(imgBH));
+		
+		
 		help.setForeground(Color.RED);
 		help.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 Help h= new Help();
+				 
+				 Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					
+					
+					playWave4.start();
+				
+					
 				 h.f.setVisible(true);
 				 frameMenu.dispose();
 
 			}
 		});
 		help.setBounds(150, 550, 170, 75);
+		
 		frameMenu.getContentPane().add(help);
+		
+		
 		frameMenu.setBounds(0, 0, 500, 700);
 		frameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
