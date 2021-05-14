@@ -52,6 +52,8 @@ public class Help {
 	 */
 	private void initialize() {
 		f = new JFrame();
+				f.setResizable(false);
+
 		f.getContentPane().setBackground(Color.ORANGE);
 		Image imgBB= new ImageIcon(this.getClass().getResource("/back.png")).getImage();
 		JButton btnNewButton = new JButton(new ImageIcon(imgBB));
