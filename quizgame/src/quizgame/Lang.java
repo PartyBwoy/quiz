@@ -43,6 +43,8 @@ public class Lang {
 	 */
 	private void initialize() {
 		frameLang = new JFrame();
+				frameLang.setResizable(false);
+
 		frameLang.getContentPane().setBackground(Color.ORANGE);
 		frameLang.getContentPane().setLayout(null);
 		Image imgBl1= new ImageIcon(this.getClass().getResource("/fr.png")).getImage();
