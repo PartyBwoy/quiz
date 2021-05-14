@@ -54,6 +54,7 @@ public class QUIZ {
 	//	frame.setIconImage(Toolkit.getDefaultToolkit().getImage(QUIZ.class.getResource("/icons/full/help.png")));
 		frame.setBackground(Color.YELLOW);
 		frame.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 11));
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.ORANGE);		
 	
 		Image imgBP= new ImageIcon(this.getClass().getResource("/PLAY (2).png")).getImage();
