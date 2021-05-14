@@ -2,10 +2,13 @@ package quizgame;
 
 import java.awt.event.*;
 import java.awt.*;
+
+import javax.naming.TimeLimitExceededException;
 import javax.swing.*;
 
 public class C_one implements ActionListener{
 	
+
 	String[] questions = 	{
 								"La capacité d'un disque dur est mesurée en?",
 								"Un CD (Compact Disk) peut stocker combien d'information habituellement??",
@@ -22,7 +25,7 @@ public class C_one implements ActionListener{
 								{"Microsoft","IBM","Apple","Sun"},
 								{"Remote Authorization Mechanism","Random Access Memory","Readily Accessed Mailer","Random Authorization Mechanism"},
 								{"Dual Operating System","Dual Organized System","Disk Organized System"," Disk Operating System"},
-								{"Logiciels","Matériels informatiques","Systèmes d'exploitation","Navigateurs"},
+								{"Logiciels","Mat�riels informatiques","Syst�mes d'exploitation","Navigateurs"},
 	};
 	char[] answers = 		{
 								'D',
@@ -40,6 +43,10 @@ public class C_one implements ActionListener{
 	int total_questions = questions.length;
 	int result;
 	int seconds=10;
+
+	
+
+	
 	
 	JFrame frameone = new JFrame();
 	JTextField textfield = new JTextField();
@@ -63,11 +70,15 @@ public class C_one implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			seconds--;
 			seconds_left.setText(String.valueOf(seconds));
+			
 			if(seconds<=0) {
 				displayAnswer();
+				
+
 			}
 			}
 		});
+	
 	
 	public C_one() {
 		frameone.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -152,7 +163,7 @@ public class C_one implements ActionListener{
 		time_label.setForeground(new Color(255,0,0));
 		time_label.setFont(new Font("MV Boli",Font.PLAIN,16));
 		time_label.setHorizontalAlignment(JTextField.CENTER);
-		time_label.setText("timer °.°");
+		time_label.setText("timer �.�");
 		
 		number_right.setBounds(150,225,200,100);
 		number_right.setBackground(new Color(25,25,25));
@@ -185,20 +196,38 @@ public class C_one implements ActionListener{
 		frameone.setVisible(true);
 		
 		nextQuestion();
+		
+	//	levelTime= {hard, easy }
+	/*	switch(levelTime) {
+		  case hard:
+			  seconds=10;
+		    break;
+		  case easy:
+		    seconds=20;
+		    break;
+		  default:
+	        seconds=10;	
+	}*/
 	}
+	
 	public void nextQuestion() {
 		
 		if(index>=total_questions) {
 			results();
-			JButton btnNewButton = new JButton("Restart!");
+			Image imgre= new ImageIcon(this.getClass().getResource("/restart.png")).getImage();
+			
+			JButton btnNewButton = new JButton();
+			btnNewButton.setIcon(new ImageIcon(imgre));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					QUIZ Q= new QUIZ();
 					 Q.frame.setVisible(true);
 					frameone.dispose();
+					Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					playWave4.start();
 				}
 			});
-			btnNewButton.setBounds(150, 600, 200, 50);
+			btnNewButton.setBounds(150, 600, 170, 75);
 			frameone.add(btnNewButton);
 		}
 		else {
@@ -209,6 +238,8 @@ public class C_one implements ActionListener{
 			answer_labelC.setText(options[index][2]);
 			answer_labelD.setText(options[index][3]);
 			timer.start();
+			
+
 		}
 	}
 	@Override
@@ -219,28 +250,46 @@ public class C_one implements ActionListener{
 			buttonC.setEnabled(false);
 			buttonD.setEnabled(false);
 			
+Thread winer=new AePlayWave("sounds/Ta Da-SoundBible.com-1884170640.wav");
+Thread loser=new AePlayWave("sounds/dun_dun_dun-Delsym-719755295.wav");
+			
 			if(e.getSource()==buttonA) {
 				answer= 'A';
 				if(answer == answers[index]) {
 					correct_guesses++;
+					winer.start();
+				}else {
+					loser.start();
 				}
 			}
 			if(e.getSource()==buttonB) {
 				answer= 'B';
 				if(answer == answers[index]) {
 					correct_guesses++;
+					winer.start();
+				}else {
+					loser.start();
+
 				}
 			}
 			if(e.getSource()==buttonC) {
 				answer= 'C';
 				if(answer == answers[index]) {
 					correct_guesses++;
+					winer.start();
+				}else {
+					loser.start();
+
 				}
 			}
 			if(e.getSource()==buttonD) {
 				answer= 'D';
 				if(answer == answers[index]) {
 					correct_guesses++;
+					winer.start();
+				}else {
+					loser.start();
+
 				}
 			}
 			displayAnswer();
@@ -249,11 +298,12 @@ public class C_one implements ActionListener{
 		
 		timer.stop();
 		
+
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		buttonC.setEnabled(false);
 		buttonD.setEnabled(false);
-		
+
 		if(answers[index] != 'A')
 			answer_labelA.setForeground(new Color(255,0,0));
 		if(answers[index] != 'B')
@@ -286,6 +336,7 @@ public class C_one implements ActionListener{
 		});
 		pause.setRepeats(false);
 		pause.start();
+		
 	}
 	public void results(){
 		
@@ -295,7 +346,14 @@ public class C_one implements ActionListener{
 		buttonD.setBounds(0, 0, 0, 0);
 		
 		result = (int)((correct_guesses/(double)total_questions)*100);
-		
+		Thread CONGRT=new AePlayWave("sounds/Fireworks And Crowd-SoundBible.com-81665534.wav");
+		Thread playWave2=new AePlayWave("sounds/Sad_Trombone-Joe_Lamb-665429450.wav");
+		if (correct_guesses>4) {
+			CONGRT.start();
+			}
+			else {
+			playWave2.start();
+			}
 		textfield.setText("RESULTS!");
 		textarea.setBounds(0, 0, 0, 0);
 		time_label.setBounds(0, 0, 0, 0);
@@ -308,10 +366,13 @@ public class C_one implements ActionListener{
 		
 		number_right.setText("("+correct_guesses+"/"+total_questions+")");
 		percentage.setText(result+"%");
-		
+			
 		frameone.add(number_right);
 		frameone.add(percentage);
 		
+
+
+	
 		
 	}
 	
