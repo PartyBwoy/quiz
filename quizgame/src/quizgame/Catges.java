@@ -14,7 +14,7 @@ import java.awt.Image;
 public class Catges {
 
 	 JFrame Categs;
-	 int seconds;
+	 
 
 
 	/**
@@ -49,7 +49,7 @@ public class Catges {
 	private void initialize( ) {
 		
 		Categs = new JFrame();
-				Categs.setResizable(false);
+		Categs.setResizable(false);
 
 		Categs.getContentPane().setBackground(Color.ORANGE);
 		Categs.setBackground(Color.ORANGE);
@@ -62,7 +62,7 @@ public class Catges {
 		C1.setBackground(Color.black);
 		C1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int time=seconds;
+			
 				C_one quiz=new C_one();
 				
 				Thread playWave4=new AePlayWave("sounds/button-10.wav");
