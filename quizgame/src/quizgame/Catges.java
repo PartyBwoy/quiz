@@ -14,11 +14,15 @@ import java.awt.Image;
 public class Catges {
 
 	 JFrame Categs;
+	 int seconds;
+
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+       
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -37,11 +41,13 @@ public class Catges {
 	public Catges() {
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
+	 *   
 	 */
-	private void initialize() {
+	private void initialize( ) {
+		
 		Categs = new JFrame();
 		Categs.getContentPane().setBackground(Color.ORANGE);
 		Categs.setBackground(Color.ORANGE);
@@ -54,7 +60,15 @@ public class Catges {
 		C1.setBackground(Color.black);
 		C1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int time=seconds;
 				C_one quiz=new C_one();
+				
+				Thread playWave4=new AePlayWave("sounds/button-10.wav");
+				
+				
+				playWave4.start();
+			
+				
 				quiz.frameone.setVisible(true);
 				Categs.dispose();
 			}
@@ -69,6 +83,13 @@ public class Catges {
 		C2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				C_two quiz=new C_two();
+				
+				Thread playWave4=new AePlayWave("sounds/button-10.wav");
+				
+				
+				playWave4.start();
+			
+				
 				quiz.frametwo.setVisible(true);
 				Categs.dispose();
 
@@ -84,6 +105,12 @@ public class Catges {
 		C3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				C_three quiz=new C_three();
+				
+				Thread playWave4=new AePlayWave("sounds/button-10.wav");
+				
+				
+				playWave4.start();
+			
 				quiz.framethree.setVisible(true);
 				Categs.dispose();
 			}
@@ -100,6 +127,8 @@ public class Catges {
 				QUIZ Q= new QUIZ();
 				 Q.frame.setVisible(true);
 				 Categs.dispose();
+				 Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					playWave4.start();
 			}
 		});
 		back.setBounds(55, 549, 170, 75);
