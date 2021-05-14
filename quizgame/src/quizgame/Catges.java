@@ -49,6 +49,8 @@ public class Catges {
 	private void initialize( ) {
 		
 		Categs = new JFrame();
+				Categs.setResizable(false);
+
 		Categs.getContentPane().setBackground(Color.ORANGE);
 		Categs.setBackground(Color.ORANGE);
 		Categs.setBounds(0, 0, 500, 700);
