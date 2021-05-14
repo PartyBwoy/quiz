@@ -19,6 +19,9 @@ import java.awt.Image;
 		 * Launch the application.
 		 */
 		public static void main(String[] args) {
+			
+			
+			
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
@@ -55,6 +58,12 @@ import java.awt.Image;
 			C1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					C_oneeng quiz=new C_oneeng();
+					
+					Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					
+					
+					playWave4.start();
+				
 					quiz.frameoneeng.setVisible(true);
 					Categseng.dispose();
 				}
@@ -63,12 +72,19 @@ import java.awt.Image;
 			C1.setBounds(150, 354, 200, 50);
 			Categseng.getContentPane().add(C1);
 			
+			
 			JButton C2 = new JButton("SoftWare");
 			C2.setBackground(Color.black);
 			C2.setFont(new Font("Tw Cen MT", Font.BOLD, 17));
 			C2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					C_twoEng quiz=new C_twoEng();
+					
+					Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					
+					
+					playWave4.start();
+				
 					quiz.frametwoeng.setVisible(true);
 					Categseng.dispose();
 
@@ -84,6 +100,12 @@ import java.awt.Image;
 			C3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					C_threeEng quiz=new C_threeEng();
+					
+					Thread playWave4=new AePlayWave("sounds/button-10.wav");
+					
+					
+					playWave4.start();
+				
 					quiz.framethreeeng.setVisible(true);
 					Categseng.dispose();
 				}
@@ -100,13 +122,15 @@ import java.awt.Image;
 					QUIZ Q= new QUIZ();
 					 Q.frame.setVisible(true);
 					 Categseng.dispose();
+					 Thread playWave4=new AePlayWave("sounds/button-10.wav");
+						playWave4.start();
 				}
 			});
 			back.setBounds(55, 549, 170, 75);
 			Categseng.getContentPane().add(back);
 		}
-	}
-
+		
+			}
 
 
 
