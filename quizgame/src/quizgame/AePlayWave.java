@@ -91,20 +91,8 @@ public class AePlayWave extends Thread {
         }
     }
  
-    /**
-     * Exemple pour jouer le son du tambour
-     */
-    public static void main(String[] args) {
-        Thread playWave1=new AePlayWave("Level1_Up.wav");
-        Thread playWave2=new AePlayWave("Level2_Up.wav");
-        Thread playWave3=new AePlayWave("Level3_Up.wav");
-        
-        playWave1.start();
-        playWave2.start();
-        playWave3.start();
-        
-     
-    }
     
+   
+       
     
 }
